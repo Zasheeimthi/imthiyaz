@@ -24,8 +24,10 @@
   <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg?v=2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
@@ -69,7 +71,7 @@
           Available for UI/UX opportunities
         </div>
         <p class="intro-name">Imthiyaz - Senior UI/UX Designer</p>
-        <p class="eyebrow">UI/UX Designer - SaaS Product Design</p>
+        <p class="eyebrow">Product Designer - SaaS Product Design</p>
         <h1>Designing clear,<br class="mobile-break"> scalable<br class="mobile-break"> experiences<br class="mobile-break"> for modern<br class="mobile-break"> SaaS products.</h1>
         <p class="hero-text">I am Imthiyaz, a UI/UX Designer with 9 years of professional experience: 5 years focused on UI/UX design and 4 earlier years as a front-end developer building production websites and interfaces.</p>
         <div class="hero-actions">
@@ -391,7 +393,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Imthiyaz · UI/UX Designer creating clear, scalable and implementation-ready experiences for SaaS products.</p>
+    <p>Imthiyaz - UI/UX Designer creating clear, scalable and implementation-ready experiences for SaaS products.</p>
     <nav aria-label="Footer navigation">
       <a href="#about">About</a>
       <a href="#work">Work</a>
@@ -400,7 +402,5 @@
     </nav>
     <div class="socials"><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a><a href="mailto:imthiyaz.design@gmail.com">Email</a></div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

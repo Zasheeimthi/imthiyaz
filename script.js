@@ -7,40 +7,60 @@ const themeButton = document.querySelector(".theme-toggle");
 const contactForm = document.querySelector(".contact-form");
 const contactEmail = "imthiyaz.design@gmail.com";
 
-const savedTheme = localStorage.getItem("portfolio-theme");
+const storage = {
+  get(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  set(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch {
+      /* Theme still works for this session if browser storage is unavailable. */
+    }
+  }
+};
+
+const savedTheme = storage.get("portfolio-theme");
 if (savedTheme === "light") root.classList.add("light");
 
-themeButton.addEventListener("click", () => {
-  root.classList.toggle("light");
-  localStorage.setItem("portfolio-theme", root.classList.contains("light") ? "light" : "dark");
-});
+if (themeButton) {
+  themeButton.addEventListener("click", () => {
+    root.classList.toggle("light");
+    storage.set("portfolio-theme", root.classList.contains("light") ? "light" : "dark");
+  });
+}
 
-menuButton.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("open");
-  document.body.classList.toggle("menu-open", open);
-  menuButton.setAttribute("aria-expanded", String(open));
-});
-
-navLinks.addEventListener("click", (event) => {
-  if (event.target.matches("a")) {
-    navLinks.classList.remove("open");
-    document.body.classList.remove("menu-open");
-    menuButton.setAttribute("aria-expanded", "false");
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
+const closeMenu = () => {
+  if (!menuButton || !navLinks) return;
   navLinks.classList.remove("open");
   document.body.classList.remove("menu-open");
   menuButton.setAttribute("aria-expanded", "false");
+};
+
+if (menuButton && navLinks) {
+  menuButton.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    document.body.classList.toggle("menu-open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
+  });
+
+  navLinks.addEventListener("click", (event) => {
+    if (event.target.matches("a")) closeMenu();
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  closeMenu();
 });
 
 window.addEventListener("resize", () => {
   if (window.innerWidth <= 700) return;
-  navLinks.classList.remove("open");
-  document.body.classList.remove("menu-open");
-  menuButton.setAttribute("aria-expanded", "false");
+  closeMenu();
 });
 
 window.addEventListener("scroll", () => {
@@ -95,7 +115,8 @@ function animateCount(element) {
   requestAnimationFrame(tick);
 }
 
-contactForm.addEventListener("submit", (event) => {
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const status = contactForm.querySelector(".form-status");
   const data = new FormData(contactForm);
@@ -119,4 +140,5 @@ contactForm.addEventListener("submit", (event) => {
   window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   status.textContent = "Opening your email app to send the message.";
   status.classList.add("success");
-});
+  });
+}

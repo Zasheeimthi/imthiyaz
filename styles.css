@@ -1217,8 +1217,7 @@ h3 {
 
   .site-header {
     width: 100vw;
-    padding: 12px 14px;
-    overflow: hidden
+    padding: 12px 14px
   }
 
   .nav-shell {
@@ -1226,8 +1225,7 @@ h3 {
     gap: 10px;
     padding: 10px 12px;
     border-radius: 20px;
-    max-width: none;
-    overflow: hidden
+    max-width: none
   }
 
   .brand {
@@ -1259,6 +1257,7 @@ h3 {
     left: 14px;
     right: 14px;
     top: 82px;
+    z-index: 90;
     display: none;
     flex-direction: column;
     align-items: stretch;
@@ -1266,10 +1265,14 @@ h3 {
     border: 1px solid var(--line);
     border-radius: 22px;
     background: var(--bg-2);
-    box-shadow: var(--shadow)
+    box-shadow: var(--shadow);
+    max-height: calc(100vh - 104px);
+    overflow-y: auto
   }
 
-  .nav-links.open {
+  .nav-links.open,
+  .menu-toggle[aria-expanded="true"] + .nav-links,
+  body.menu-open .nav-links {
     display: flex
   }
 
