@@ -29,6 +29,20 @@ navLinks.addEventListener("click", (event) => {
   }
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  navLinks.classList.remove("open");
+  document.body.classList.remove("menu-open");
+  menuButton.setAttribute("aria-expanded", "false");
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth <= 700) return;
+  navLinks.classList.remove("open");
+  document.body.classList.remove("menu-open");
+  menuButton.setAttribute("aria-expanded", "false");
+});
+
 window.addEventListener("scroll", () => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   progress.style.width = `${Math.max(0, window.scrollY / max) * 100}%`;

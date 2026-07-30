@@ -31,7 +31,10 @@
 }
 
 html {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  scroll-padding-top: 112px;
+  overflow-x: hidden;
+  overflow-x: clip
 }
 
 body {
@@ -44,6 +47,11 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-x: clip;
+}
+
+main {
+  padding-top: 96px
 }
 
 body.menu-open {
@@ -106,13 +114,16 @@ button {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 60;
   padding: 16px clamp(18px, 4vw, 42px)
 }
 
 .nav-shell {
+  width: 100%;
   max-width: 1180px;
   margin: auto;
   display: flex;
@@ -134,7 +145,8 @@ button {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px
+  gap: 12px;
+  min-width: 0
 }
 
 .brand-mark {
@@ -154,7 +166,8 @@ button {
 }
 
 .brand strong {
-  font-size: 14px
+  font-size: 14px;
+  line-height: 1.25
 }
 
 .brand small {
@@ -229,6 +242,12 @@ button {
   padding: 90px 0
 }
 
+.section-wrap>*,
+.hero-copy,
+.hero-visual {
+  min-width: 0
+}
+
 .hero {
   min-height: calc(100vh - 80px);
   display: grid;
@@ -282,22 +301,21 @@ h2,
 h3 {
   font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
   line-height: 1.02;
-  letter-spacing: -1px;
-  font-size: 3.75rem !important;
+  letter-spacing: -.04em;
   margin: 0
 }
 
 h1 {
-  font-size: clamp(38px, 5.4vw, 68px);
+  font-size: clamp(40px, 5vw, 64px);
   max-width: 760px
 }
 
 h2 {
-  font-size: clamp(34px, 4.5vw, 62px)
+  font-size: clamp(28px, 3.8vw, 48px)
 }
 
 h3 {
-  font-size: clamp(24px, 3vw, 38px)
+  font-size: clamp(20px, 2.4vw, 30px)
 }
 
 .about-title {
@@ -309,7 +327,12 @@ h3 {
   font-size: 1.125rem !important;
   color: var(--muted);
   max-width: 680px;
-  margin: 24px 0 34px
+  margin: 24px 0 34px;
+  overflow-wrap: break-word
+}
+
+.mobile-break {
+  display: none
 }
 
 .hero-actions,
@@ -1177,11 +1200,65 @@ h3 {
 }
 
 @media (max-width:700px) {
+  html {
+    scroll-padding-top: 92px
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip
+  }
+
+  main {
+    padding-top: 84px
+  }
+
+  .site-header {
+    width: 100vw;
+    padding: 12px 14px;
+    overflow: hidden
+  }
+
+  .nav-shell {
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 20px;
+    max-width: none;
+    overflow: hidden
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    gap: 10px;
+    overflow: hidden
+  }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 13px;
+    font-size: 16px
+  }
+
+  .brand strong {
+    display: -webkit-box;
+    max-width: 170px;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.25;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+  }
+
   .nav-links {
     position: fixed;
-    left: 18px;
-    right: 18px;
-    top: 86px;
+    left: 14px;
+    right: 14px;
+    top: 82px;
     display: none;
     flex-direction: column;
     align-items: stretch;
@@ -1197,21 +1274,103 @@ h3 {
   }
 
   .menu-toggle {
-    display: grid
+    display: grid !important;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    position: relative;
+    z-index: 2
   }
 
-  .theme-toggle span:not(.theme-dot) {
+  .theme-toggle {
     display: none
   }
 
   .section-wrap {
-    width: min(100% - 28px, 1180px);
-    padding: 68px 0
+    width: calc(100vw - 28px);
+    max-width: 1180px;
+    padding: 62px 0
   }
 
   .hero {
-    padding-top: 30px;
+    width: calc(100vw - 28px);
+    max-width: 100%;
+    gap: 34px;
+    padding-top: 34px;
     min-height: auto
+  }
+
+  .availability {
+    max-width: 100%;
+    padding: 7px 10px;
+    font-size: 12px;
+    line-height: 1.35;
+    margin-bottom: 22px
+  }
+
+  .intro-name,
+  .eyebrow,
+  .section-kicker {
+    font-size: 11px;
+    letter-spacing: .11em
+  }
+
+  h1 {
+    max-width: calc(100vw - 28px);
+    font-size: clamp(40px, 11.8vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+    overflow-wrap: break-word
+  }
+
+  .mobile-break {
+    display: block
+  }
+
+  h2 {
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.12
+  }
+
+  h3 {
+    font-size: clamp(20px, 6vw, 25px);
+    line-height: 1.16
+  }
+
+  .hero-text {
+    max-width: calc(100vw - 28px);
+    margin: 18px 0 26px;
+    font-size: 15px !important;
+    line-height: 1.7
+  }
+
+  .hero-actions,
+  .contact-links {
+    gap: 10px
+  }
+
+  .btn {
+    min-height: 46px;
+    border-radius: 14px;
+    padding: 0 18px;
+    font-size: 13px
+  }
+
+  .hero-visual {
+    min-height: 320px;
+    overflow: hidden
+  }
+
+  .flow-orbit {
+    inset: 12px
+  }
+
+  .flow-node {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    font-size: 12px
   }
 
   .metrics,
@@ -1225,8 +1384,67 @@ h3 {
     grid-template-columns: 1fr
   }
 
+  .mock-window,
+  .case-card,
+  .metric-card,
+  .frontend-card,
+  .system-board,
+  .collab-panel,
+  .contact-card,
+  .testimonial-grid blockquote {
+    border-radius: 22px
+  }
+
+  .mock-window,
+  .case-card,
+  .system-board,
+  .collab-panel,
+  .contact-card {
+    padding: 20px
+  }
+
   .mock-sidebar {
     display: none
+  }
+
+  .split {
+    gap: 24px
+  }
+
+  .about-copy p,
+  .case-copy p,
+  .case-copy dd,
+  .process-step p,
+  .collab-panel li,
+  .contact-card p {
+    font-size: 14px
+  }
+
+  .frontend-card {
+    min-height: auto;
+    padding: 20px
+  }
+
+  .frontend-card h3 {
+    font-size: 21px !important
+  }
+
+  .domain-tags {
+    gap: 8px
+  }
+
+  .domain-tags span,
+  .tool-row span {
+    font-size: 11px;
+    padding: 8px 10px
+  }
+
+  .metric-card {
+    padding: 22px
+  }
+
+  .section-heading {
+    margin-bottom: 24px
   }
 
   .case-copy div {
@@ -1235,22 +1453,167 @@ h3 {
   }
 
   .browser-mockup {
-    min-height: 260px
+    min-height: 240px;
+    padding: 14px;
+    border-radius: 22px
   }
 
   .dashboard-art,
   .kanban-art,
   .system-art {
-    height: 220px
+    height: 200px
+  }
+
+  .kanban-art,
+  .system-art,
+  .skill-grid,
+  .tool-row {
+    gap: 10px
+  }
+
+  .process-step {
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 18px;
+    border-radius: 18px
+  }
+
+  .process-step b {
+    font-size: 15px
+  }
+
+  .skill-grid button,
+  .testimonial-grid blockquote {
+    padding: 18px
+  }
+
+  .system-board>* {
+    padding: 16px;
+    border-radius: 18px
+  }
+
+  .color-tokens span {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px
+  }
+
+  .collab-map {
+    height: 180px;
+    gap: 8px
+  }
+
+  .collab-map span {
+    font-size: 12px
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    border-radius: 14px;
+    padding: 13px;
+    font-size: 14px
   }
 
   .site-footer {
+    width: calc(100vw - 28px);
+    max-width: 1180px;
     display: block
   }
 
   .site-footer nav,
   .socials {
     margin-top: 16px
+  }
+}
+
+@media (max-width:420px) {
+  main {
+    padding-top: 80px
+  }
+
+  .site-header {
+    padding: 10px 12px
+  }
+
+  .nav-shell {
+    padding: 9px 10px;
+    border-radius: 18px
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px
+  }
+
+  .brand strong {
+    max-width: 150px;
+    font-size: 12px
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px
+  }
+
+  .nav-links {
+    top: 76px;
+    left: 12px;
+    right: 12px
+  }
+
+  .section-wrap {
+    width: calc(100vw - 24px);
+    max-width: 1180px;
+    padding: 54px 0
+  }
+
+  .hero {
+    width: calc(100vw - 24px);
+    padding-top: 28px
+  }
+
+  .availability {
+    font-size: 11px
+  }
+
+  h1 {
+    max-width: calc(100vw - 24px);
+    font-size: clamp(34px, 9.8vw, 38px);
+    letter-spacing: -.04em;
+    line-height: 1.1
+  }
+
+  h2 {
+    font-size: clamp(25px, 7.5vw, 32px)
+  }
+
+  .hero-text {
+    max-width: calc(100vw - 24px);
+    font-size: 14px !important
+  }
+
+  .btn {
+    width: 100%
+  }
+
+  .hero-visual {
+    min-height: 280px
+  }
+
+  .mock-window,
+  .case-card,
+  .system-board,
+  .collab-panel,
+  .contact-card {
+    padding: 16px
+  }
+
+  .dashboard-art,
+  .kanban-art,
+  .system-art {
+    height: 170px
   }
 }
 
