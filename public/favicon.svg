@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Imthiyas S monogram</title>
+  <desc id="desc">IM monogram in off-white and acid lime on a dark background.</desc>
+  <rect width="64" height="64" rx="14" fill="#101110"/>
+  <path d="M14 16h7v32h-7zM25 16h7v32h-7z" fill="#f1f0e9"/>
+  <path d="M37 16h7v32h-7zM48 16h3v32h-3z" fill="#d8ff5f"/>
+  <path d="M37 16h14v7H37z" fill="#d8ff5f"/>
+</svg>
